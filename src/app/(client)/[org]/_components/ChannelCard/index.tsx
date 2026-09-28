@@ -21,6 +21,8 @@ interface ComponentProps {
   is_private: boolean;
   preview_thread: any;
   active_buzz?: boolean;
+  selectedChannelId?: string;
+  onSelectChannel?: (channelId: string) => void;
 }
 
 export const ChannelCard = (props: ComponentProps) => {
@@ -32,6 +34,7 @@ export const ChannelCard = (props: ComponentProps) => {
 
   // Handle channel selection
   const selectChannel = () => {
+    props.onSelectChannel?.(props.channels_id);
     dispatch({
       type: ACTIONS.MESSAGES,
       payload: { newThreads: [], newPage: 1 },
@@ -59,7 +62,7 @@ export const ChannelCard = (props: ComponentProps) => {
   };
 
   // Determine if this card is the currently selected one
-  const isSelected = props.channels_id === id;
+  const isSelected = props.channels_id === (props.selectedChannelId || id);
   const isActive = props?.mention_count > 0 || props?.thread_count > 0;
 
   //

@@ -1,5 +1,46 @@
 import { ACTIONS } from "./Actions";
 
+const toPreviewThreadItem = (message: any) => ({
+  thread_id: message.thread_id,
+  channels_id: message.channel_id,
+  username: message.username,
+  status: "success",
+  created_at: message.created_at,
+  messages: null,
+  message_count: 0,
+  last_reply: "0001-01-01T00:00:00Z",
+  avatar_url: message.avatar_url,
+  default_avatar_url: message.default_avatar_url,
+  type: message.type || "message",
+  message: message.message,
+  channel_name: message.channel_name,
+  channel_type: message.channel_type,
+  current_status: "pending",
+  full_name: message.full_name,
+  email: message.email,
+  edited: Boolean(message.edited),
+  is_pinned: false,
+  is_deactivated: false,
+  user_type: message.user_type,
+  user_id: message.user_id,
+  org_id: message.org_id,
+  pinned_details: {},
+  reactions: null,
+  media: message.media || [],
+});
+
+const prependPreviewThread = (list: any[] = [], message: any) => {
+  const previewItem = toPreviewThreadItem(message);
+  const currentPreview = Array.isArray(list) ? list : [];
+
+  return [
+    previewItem,
+    ...currentPreview.filter(
+      (item: any) => String(item?.thread_id) !== String(message.thread_id)
+    ),
+  ];
+};
+
 const prependRealtimeThreadMessage = (list: any[] = [], newMessage: any) => {
   const threadId = newMessage?.thread_id;
   if (!threadId) return [newMessage, ...list];
@@ -925,6 +966,50 @@ const reducers = (state: any, action: any) => {
         ...state,
         marketPlaceAgents: payload,
       };
+    case ACTIONS.PREPEND_CHANNEL_PREVIEW: {
+      const message = action.payload;
+      const channelId = message?.channel_id;
+      if (!channelId || !message?.thread_id) return state;
+
+      return {
+        ...state,
+        channels: (state.channels || []).map((channel: any) => {
+          if (String(channel.channels_id) !== String(channelId)) return channel;
+
+          return {
+            ...channel,
+            preview_message: message.message ?? channel.preview_message,
+            last_thread_id: message.thread_id,
+            preview_thread: prependPreviewThread(
+              channel.preview_thread,
+              message
+            ),
+          };
+        }),
+      };
+    }
+    case ACTIONS.PREPEND_HOME_DM_PREVIEW: {
+      const message = action.payload;
+      const channelId = message?.channel_id;
+      if (!channelId || !message?.thread_id) return state;
+
+      const updateDm = (dm: any) => {
+        const dmId = dm?.channel_id || dm?.channels_id;
+        if (String(dmId) !== String(channelId)) return dm;
+
+        return {
+          ...dm,
+          preview_message: message.message ?? dm.preview_message,
+          last_thread_id: message.thread_id,
+          preview_thread: prependPreviewThread(dm.preview_thread, message),
+        };
+      };
+
+      return {
+        ...state,
+        homeDms: (state.homeDms || []).map(updateDm),
+      };
+    }
     case ACTIONS.UPDATE_THREAD_COUNT: {
       const updatedChannelId = action.payload.channels_id;
 
