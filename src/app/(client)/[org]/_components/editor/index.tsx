@@ -9,6 +9,7 @@ import { ACTIONS } from "~/store/Actions";
 import Code from "@tiptap/extension-code";
 import HardBreak from "@tiptap/extension-hard-break";
 import SlackCodeBlock from "./slack-code-block";
+import { AppleEmoji } from "./apple-emoji";
 
 // Shift+Enter: MessageHardBreak. Plain Enter: message-box (send / lists).
 const MessageHardBreak = HardBreak.extend({
@@ -777,6 +778,7 @@ const UseTextEditor = (
           class: "slack-code-block",
         },
       }),
+      AppleEmoji,
     ],
     onCreate: ({ editor }) => {
       editor.commands.focus();
