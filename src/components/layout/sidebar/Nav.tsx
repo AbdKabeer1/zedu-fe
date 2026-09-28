@@ -2,7 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "~/store/GlobalState";
 import { ACTIONS } from "~/store/Actions";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { ChevronRight, PlusIcon } from "lucide-react";
 import {
   Accordion,
@@ -30,8 +30,22 @@ export default function ChannelNav({
 }: any) {
   const { state, dispatch } = useContext(DataContext);
   const router = useRouter();
+  const params = useParams();
   const { orgSlug } = state;
   const pathname = usePathname();
+  const onChannelPage = pathname.includes("/channels/");
+  const routeChannelId = onChannelPage ? String(params.id || "") : "";
+  const [pendingChannelId, setPendingChannelId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (pendingChannelId && pendingChannelId === routeChannelId) {
+      setPendingChannelId(null);
+    }
+  }, [pendingChannelId, routeChannelId]);
+
+  const selectedChannelId = onChannelPage
+    ? pendingChannelId || routeChannelId
+    : "";
 
   useEffect(() => {
     const savedScroll = sessionStorage.getItem("sidebar-scroll");
@@ -187,6 +201,8 @@ export default function ChannelNav({
                             key={
                               item?.channels_id ?? item?.channel_slug ?? index
                             }
+                            selectedChannelId={selectedChannelId}
+                            onSelectChannel={setPendingChannelId}
                           />
                         ))}
                       </ul>

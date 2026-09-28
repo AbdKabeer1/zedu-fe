@@ -32,7 +32,7 @@ export default function ChannelConnection() {
 
       const onPublication = (ctx: any) => {
         const result = ctx?.data;
-        console.log("channel publishing", ctx);
+        // console.log("channel publishing", ctx);
 
         if (ctx?.data?.type === "typing") {
           dispatch({
@@ -83,10 +83,6 @@ export default function ChannelConnection() {
               reply: message,
               updates,
             },
-          });
-          dispatch({
-            type: ACTIONS.CHANNEL_CALLBACK,
-            payload: !channelCallback,
           });
         }
 
