@@ -47,7 +47,6 @@ import DocumentAttachmentCard from "./document-attachment-card";
 import DocumentPreviewModal from "./document-preview-modal";
 import { Media } from "~/types/channel";
 import { linkifyText } from "~/utils/linkify-text";
-import { replaceEmojiWithImages } from "~/lib/apple-emoji";
 import {
   getDocumentCategory,
   isPreviewableDocument,
@@ -137,9 +136,9 @@ const MessageItem: React.FC<MessageItemProps> = ({ item }) => {
   const [previewDocument, setPreviewDocument] = useState<MediaItem | null>(
     null
   );
-  const trimmedMessage = replaceEmojiWithImages(
-    item.message.replace(/\n{2,}/g, "\n\n").replace(/^\n+|\n+$/g, "")
-  );
+  const trimmedMessage = item.message
+    .replace(/\n{2,}/g, "\n\n")
+    .replace(/^\n+|\n+$/g, "");
 
   const { imageItems, otherItems } = useMemo(() => {
     const images: MediaItem[] = [];
@@ -312,7 +311,7 @@ const MessageItem: React.FC<MessageItemProps> = ({ item }) => {
                     style={{
                       margin: "0",
                       lineHeight: "22px",
-                      color: item?.type === "system" ? "#6B7280" : "",
+                      color: item?.type === "system" ? "#aaa" : "",
                       wordBreak: "break-word",
                     }}
                   >

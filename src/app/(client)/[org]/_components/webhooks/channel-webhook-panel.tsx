@@ -49,7 +49,7 @@ export default function ChannelWebhookPanel({
   const [copiedUrl, setCopiedUrl] = useState(false);
   const [webhookNameInput, setWebhookNameInput] = useState("");
 
-  const historyHref = `/${orgSlug}/home/channels/${channelId}/settings/history`;
+  const historyHref = `/${orgSlug}/settings/organisation/webhooks/${channelId}/history`;
 
   const isActive = webhook?.status === "active";
 

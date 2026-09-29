@@ -1,4 +1,5 @@
 import React, { useContext, useMemo, useState } from "react";
+import { useRBAC } from "~/hooks/useRBAC";
 import { Button } from "~/components/ui/button";
 import { DialogHeader, DialogTitle } from "~/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
@@ -9,6 +10,7 @@ import {
   AgentsTabContainer,
 } from "./channel-details-tabs-content";
 import FilesTabContainer from "./files-tab-container";
+import { WebhooksTabContainer } from "../webhooks/webhooks-tab-container";
 import { cn } from "~/lib/utils";
 import { DataContext } from "~/store/GlobalState";
 
@@ -21,6 +23,8 @@ function formatTabCount(count: number) {
 
 export const ChannelDetailsContent = ({ setIsOpen }: any) => {
   const { state } = useContext(DataContext);
+  const { hasPermission } = useRBAC();
+  const canManageWebhooks = hasPermission("create:webhooks");
   const [muted, setMuted] = useState(false);
   const [starred, setStarred] = useState(false);
   const [activeTab, setActiveTab] = useState(state?.activeTab);
@@ -32,8 +36,15 @@ export const ChannelDetailsContent = ({ setIsOpen }: any) => {
       { name: "agents", notifs: state?.channelAgents?.length || 0 },
       { name: "files", notifs: 0 },
     ];
+    if (canManageWebhooks) {
+      tabs.push({ name: "webhooks", notifs: 0 });
+    }
     return tabs;
-  }, [state?.channelDetails?.users?.length, state?.channelAgents?.length]);
+  }, [
+    canManageWebhooks,
+    state?.channelDetails?.users?.length,
+    state?.channelAgents?.length,
+  ]);
 
   const TABS_CONTENT = useMemo(() => {
     const content = [
@@ -42,8 +53,11 @@ export const ChannelDetailsContent = ({ setIsOpen }: any) => {
       { name: "agents", Component: AgentsTabContainer },
       { name: "files", Component: FilesTabContainer },
     ];
+    if (canManageWebhooks) {
+      content.push({ name: "webhooks", Component: WebhooksTabContainer });
+    }
     return content;
-  }, []);
+  }, [canManageWebhooks]);
 
   const handleMute = async () => {
     setMuted(!muted);

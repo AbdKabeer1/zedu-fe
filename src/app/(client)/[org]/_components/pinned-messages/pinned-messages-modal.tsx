@@ -6,7 +6,6 @@ import { Dialog, DialogContent, DialogTitle } from "~/components/ui/dialog";
 import Loading from "~/components/ui/loading";
 import UserAvatar from "~/components/layout/user-avatar";
 import MessageItem from "../ChannelMessage/message-item";
-import { AppleEmojiText } from "~/app/(client)/[org]/_components/apple-emoji/apple-emoji-text";
 import ReplyCard from "../reply-card";
 import { DataContext } from "~/store/GlobalState";
 import { ACTIONS } from "~/store/Actions";
@@ -424,8 +423,7 @@ function PinnedMessageCard({
                     key={emoji?.reaction_id || index}
                     className="flex h-[27px] items-center rounded-2xl border border-blue-400 bg-primary-50 px-3 text-[13px] text-blue-100"
                   >
-                    <AppleEmojiText text={emoji?.reaction} />{" "}
-                    {emoji?.reaction_count}
+                    {emoji?.reaction} {emoji?.reaction_count}
                   </span>
                 ))}
               </div>

@@ -107,7 +107,6 @@ export default function GeneralNotificationConnection() {
             type: ACTIONS.PREPEND_HOME_DM_PREVIEW,
             payload: message,
           });
-          dispatch({ type: ACTIONS.HOME_DMS_CALLBACK });
         }
 
         if (audioPlayer.current === null) return;

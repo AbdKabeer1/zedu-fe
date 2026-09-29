@@ -71,8 +71,6 @@ export interface Channel {
   archived?: boolean;
   /** Channel-wide top-level message write restriction */
   is_restricted?: boolean;
-  /** When false, automated system notices are hidden for this channel */
-  system_message?: boolean;
   restricted?: boolean;
 }
 

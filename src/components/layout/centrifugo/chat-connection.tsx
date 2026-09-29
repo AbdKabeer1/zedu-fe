@@ -177,7 +177,6 @@ export default function ChatConnection() {
             type: ACTIONS.CHATS,
             payload: { newMessage: data, isRealTime: true },
           });
-          dispatch({ type: ACTIONS.HOME_DMS_CALLBACK });
         }
 
         if (
