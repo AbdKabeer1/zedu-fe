@@ -92,12 +92,10 @@ const EditReplyMessageBox = ({ subscription, sendMessage }: any) => {
   };
 
   const onEmojiClick = (emojiData: any) => {
-    const native = emojiData?.native as string | undefined;
-    if (!editor || !native) return;
-    setIsEmojiPickerOpen(false);
-    queueMicrotask(() => {
-      editor.chain().focus().insertContent(native).run();
-    });
+    if (editor) {
+      editor.chain().focus().insertContent(emojiData?.native).run();
+      setIsEmojiPickerOpen(false);
+    }
   };
 
   useEffect(() => {

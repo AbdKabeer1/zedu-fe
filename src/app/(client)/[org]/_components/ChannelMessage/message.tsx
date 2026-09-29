@@ -9,7 +9,6 @@ import {
   BookmarkCheck,
 } from "lucide-react";
 import MessageItem from "./message-item";
-import { AppleEmojiText } from "~/app/(client)/[org]/_components/apple-emoji/apple-emoji-text";
 import { DataContext } from "~/store/GlobalState";
 import { ACTIONS } from "~/store/Actions";
 import { useParams, usePathname } from "next/navigation";
@@ -297,8 +296,7 @@ const Message = ({
                       onClick={(e) => handleClick(emoji, e)}
                       className="bg-primary-50 text-[13px] cursor-pointer text-blue-100 border border-blue-400 flex items-center justify-center h-[27px] py-1 px-3 rounded-2xl"
                     >
-                      <AppleEmojiText text={emoji?.reaction} />{" "}
-                      {emoji?.reaction_count}
+                      {emoji?.reaction} {emoji?.reaction_count}
                     </div>
                   </TooltipTrigger>
 
@@ -306,12 +304,11 @@ const Message = ({
                     <TooltipArrow className="fill-black" />
 
                     <div className="text-5xl mx-auto text-center bg-white rounded-lg flex items-center justify-center p-2 w-[70px] mb-2">
-                      <AppleEmojiText text={emoji.reaction} />
+                      {emoji.reaction}
                     </div>
                     {namesListString && (
                       <span className="block text-center whitespace-normal break-words">
-                        {namesListString} reacted with{" "}
-                        <AppleEmojiText text={emoji?.reaction} />
+                        {namesListString} reacted with {emoji?.reaction}
                       </span>
                     )}
                   </TooltipContent>

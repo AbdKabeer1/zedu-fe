@@ -26,7 +26,6 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 import EmojiPicker from "~/components/theme/themed-emoji-picker";
-import { AppleEmojiText } from "~/app/(client)/[org]/_components/apple-emoji/apple-emoji-text";
 import data from "@emoji-mart/data";
 import {
   DeleteSavedMessage,
@@ -390,8 +389,7 @@ const Thread = ({
                         onClick={(e) => handleClick(emoji, e)}
                         className="flex h-[28px] cursor-pointer items-center justify-center rounded-full border border-indigo-200 dark:border-indigo-400/30 bg-[#F4F3FF] dark:bg-indigo-500/15 px-3 py-1 text-[13px] text-[#5757CD] dark:text-[#C4B5FD]"
                       >
-                        <AppleEmojiText text={emoji?.reaction} />{" "}
-                        {emoji?.reaction_count}
+                        {emoji?.reaction} {emoji?.reaction_count}
                       </div>
                     </TooltipTrigger>
 
@@ -399,12 +397,11 @@ const Thread = ({
                       <TooltipArrow className="fill-black" />
 
                       <div className="mx-auto mb-2 flex w-[70px] items-center justify-center rounded-lg bg-white p-2 text-center text-5xl">
-                        <AppleEmojiText text={emoji.reaction} />
+                        {emoji.reaction}
                       </div>
                       {namesListString && (
                         <span className="block text-center whitespace-normal break-words">
-                          {namesListString} reacted with{" "}
-                          <AppleEmojiText text={emoji?.reaction} />
+                          {namesListString} reacted with {emoji?.reaction}
                         </span>
                       )}
                     </TooltipContent>
