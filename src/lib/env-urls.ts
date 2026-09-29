@@ -103,3 +103,14 @@ export function facebookUrl(): string {
 export function xUrl(): string {
   return readEnv("NEXT_PUBLIC_X_URL");
 }
+
+/** npm package root for emoji-datasource-apple (no trailing slash). */
+export function appleEmojiDatasourceBaseUrl(): string {
+  return readEnv("NEXT_PUBLIC_EMOJI_DATASOURCE_URL");
+}
+
+export function appleEmojiImageUrl(unified: string): string {
+  const base = appleEmojiDatasourceBaseUrl();
+  if (!base || !unified) return "";
+  return `${base.replace(/\/$/, "")}/img/apple/64/${unified}.png`;
+}

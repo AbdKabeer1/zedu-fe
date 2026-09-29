@@ -9,6 +9,7 @@ import "prismjs/components/prism-python";
 import "prismjs/components/prism-markup";
 import "prismjs/components/prism-css";
 import PreviewLinks from "../ChannelMessage/preview-links";
+import { replaceEmojiWithImages } from "~/lib/apple-emoji";
 import AssetToDelete from "./asset-to-delete";
 
 /** @eslint-disable */
@@ -38,9 +39,9 @@ const hasLinks = (text: string): boolean => {
 };
 
 const MessageItem: React.FC<MessageItemProps> = ({ item }) => {
-  const trimmedMessage = item.message
-    .replace(/\n{2,}/g, "\n\n")
-    .replace(/^\n+|\n+$/g, "");
+  const trimmedMessage = replaceEmojiWithImages(
+    item.message.replace(/\n{2,}/g, "\n\n").replace(/^\n+|\n+$/g, "")
+  );
 
   const messageHasLinks = hasLinks(trimmedMessage);
 
