@@ -30,13 +30,16 @@ export const AppleEmoji = Extension.create({
                 const unified = lookupAppleEmoji(match[0]);
                 if (!unified) continue;
 
+                const imageUrl = appleEmojiImageUrl(unified);
+                if (!imageUrl) continue;
+
                 const from = pos + match.index;
                 const to = from + match[0].length;
 
                 decorations.push(
                   Decoration.inline(from, to, {
                     class: "apple-emoji",
-                    style: `--apple-emoji-image: url("${appleEmojiImageUrl(unified)}")`,
+                    style: `--apple-emoji-image: url("${imageUrl}")`,
                   })
                 );
               }

@@ -358,10 +358,12 @@ const MessageBox = ({
   };
 
   const onEmojiClick = (emojiData: any) => {
-    if (editor) {
-      editor.chain().focus().insertContent(emojiData?.native).run();
-      setIsEmojiPickerOpen(false);
-    }
+    const native = emojiData?.native as string | undefined;
+    if (!editor || !native) return;
+    setIsEmojiPickerOpen(false);
+    queueMicrotask(() => {
+      editor.chain().focus().insertContent(native).run();
+    });
   };
 
   const handleGifSelect = async (gif: LocalGif) => {
