@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { SmilePlus, Bookmark, BookmarkCheck } from "lucide-react";
 import UserAvatar from "~/components/layout/user-avatar";
 import MessageItem from "./message-item";
+import { AppleEmojiText } from "~/app/(client)/[org]/_components/apple-emoji/apple-emoji-text";
 import {
   Popover,
   PopoverContent,
@@ -234,7 +235,8 @@ const ReplyMessages = ({
                       onClick={(e) => handleClick(emoji, e)}
                       className="bg-primary-50 text-[13px] cursor-pointer text-blue-100 border border-blue-400 flex items-center justify-center h-[27px] py-1 px-3 rounded-2xl"
                     >
-                      {emoji?.reaction} {emoji?.reaction_count}
+                      <AppleEmojiText text={emoji?.reaction} />{" "}
+                      {emoji?.reaction_count}
                     </div>
                   </TooltipTrigger>
 
@@ -242,11 +244,12 @@ const ReplyMessages = ({
                     <TooltipArrow className="fill-black" />
 
                     <div className="text-5xl mx-auto text-center bg-white rounded-lg flex items-center justify-center p-2 w-[70px] mb-2">
-                      {emoji.reaction}
+                      <AppleEmojiText text={emoji.reaction} />
                     </div>
                     {namesListString && (
                       <span className="block text-center whitespace-normal break-words">
-                        {namesListString} reacted with {emoji?.reaction}
+                        {namesListString} reacted with{" "}
+                        <AppleEmojiText text={emoji?.reaction} />
                       </span>
                     )}
                   </TooltipContent>
