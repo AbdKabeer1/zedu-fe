@@ -80,7 +80,7 @@ const UseHomeChannel = () => {
 
     const fetchVisibleDms = async () => {
       const res = await GetRequest(
-        `/organisations/${orgId}/dms/visible?page=1&limit=10`
+        `/organisations/${orgId}/dms/visible?page=1&limit=100`
       );
 
       if (res?.status === 200 || res?.status === 201) {
