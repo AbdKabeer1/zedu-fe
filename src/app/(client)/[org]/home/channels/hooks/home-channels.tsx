@@ -78,13 +78,10 @@ const UseHomeChannel = () => {
   useEffect(() => {
     if (!orgId) return;
 
-    let cancelled = false;
-    const timeoutId = window.setTimeout(async () => {
+    const fetchVisibleDms = async () => {
       const res = await GetRequest(
-        `/organisations/${orgId}/dms/visible?page=1&limit=10`
+        `/organisations/${orgId}/dms/visible?page=1&limit=100`
       );
-
-      if (cancelled) return;
 
       if (res?.status === 200 || res?.status === 201) {
         dispatch({
@@ -92,12 +89,9 @@ const UseHomeChannel = () => {
           payload: res?.data?.data ?? [],
         });
       }
-    }, 200);
-
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timeoutId);
     };
+
+    fetchVisibleDms();
   }, [
     orgId,
     dispatch,
