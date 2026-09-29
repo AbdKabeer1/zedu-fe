@@ -2,7 +2,7 @@
 
 import ChannelDetailsDialog from "../channel-details-dialog";
 import ChannelExportModal from "../channel-export/channel-export-modal";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import {
   useState,
   useRef,
@@ -16,6 +16,7 @@ import { ACTIONS } from "~/store/Actions";
 import { DataContext } from "~/store/GlobalState";
 import { PostRequest } from "~/utils/new-request";
 import Loading from "~/components/ui/loading";
+import { useRBAC } from "~/hooks/useRBAC";
 
 interface MenuDropdownProps {
   isOpen: boolean;
@@ -27,8 +28,11 @@ const MenuDropdown = ({ isOpen, onClose }: MenuDropdownProps) => {
   const { state, dispatch } = useContext(DataContext);
   const [buttonLoading, setButtonLoading] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
+  const router = useRouter();
   const params = useParams();
   const id = params?.id as string;
+  const { hasPermission } = useRBAC();
+  const canManageChannels = hasPermission("manage:channels");
 
   useEffect(() => {
     if (!isOpen) return;
@@ -95,6 +99,20 @@ const MenuDropdown = ({ isOpen, onClose }: MenuDropdownProps) => {
             <div className={menuItemClass} onClick={handleOpenExport}>
               Export
             </div>
+
+            {canManageChannels ? (
+              <div
+                className={menuItemClass}
+                onClick={() => {
+                  onClose();
+                  router.push(
+                    `/${state?.orgSlug}/home/channels/${id}/settings`
+                  );
+                }}
+              >
+                Channel settings
+              </div>
+            ) : null}
 
             <div className={dividerClass} />
 
