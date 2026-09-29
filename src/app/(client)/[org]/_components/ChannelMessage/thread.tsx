@@ -26,7 +26,7 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover";
 import EmojiPicker from "~/components/theme/themed-emoji-picker";
-import { AppleEmojiText } from "~/utils/apple-emoji";
+import { AppleEmojiText } from "~/app/(client)/[org]/_components/apple-emoji/apple-emoji-text";
 import data from "@emoji-mart/data";
 import {
   DeleteSavedMessage,

@@ -1,10 +1,11 @@
 import { Extension } from "@tiptap/core";
 import { Plugin, PluginKey } from "@tiptap/pm/state";
 import { Decoration, DecorationSet } from "@tiptap/pm/view";
-import { appleEmojiImageUrl, lookupAppleEmoji } from "~/utils/apple-emoji";
-
-const EMOJI_PATTERN =
-  /\p{Extended_Pictographic}[\u{E0020}-\u{E007E}]+\u{E007F}|\p{Regional_Indicator}{2}|[#*0-9]\uFE0F?\u20E3|\p{Extended_Pictographic}(?:\p{Emoji_Modifier}|\uFE0F|\uFE0E)?(?:\u200D\p{Extended_Pictographic}(?:\p{Emoji_Modifier}|\uFE0F|\uFE0E)?)*/gu;
+import {
+  appleEmojiImageUrl,
+  EMOJI_PATTERN,
+  lookupAppleEmoji,
+} from "~/lib/apple-emoji";
 
 export const AppleEmoji = Extension.create({
   name: "appleEmoji",

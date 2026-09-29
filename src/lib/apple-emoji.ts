@@ -1,4 +1,7 @@
 import appleData from "@emoji-mart/data/sets/15/apple.json";
+import { appleEmojiImageUrl } from "~/lib/env-urls";
+
+export { appleEmojiImageUrl };
 
 type EmojiSkin = { native?: string; unified?: string };
 type EmojiEntry = { skins?: EmojiSkin[] };
@@ -17,9 +20,7 @@ for (const emoji of Object.values(
 const EMOJI_PATTERN =
   /\p{Extended_Pictographic}[\u{E0020}-\u{E007E}]+\u{E007F}|\p{Regional_Indicator}{2}|[#*0-9]\uFE0F?\u20E3|\p{Extended_Pictographic}(?:\p{Emoji_Modifier}|\uFE0F|\uFE0E)?(?:\u200D\p{Extended_Pictographic}(?:\p{Emoji_Modifier}|\uFE0F|\uFE0E)?)*/gu;
 
-export function appleEmojiImageUrl(unified: string) {
-  return `https://cdn.jsdelivr.net/npm/emoji-datasource-apple@15.0.1/img/apple/64/${unified}.png`;
-}
+export { EMOJI_PATTERN };
 
 export function lookupAppleEmoji(emoji: string) {
   return (
@@ -30,7 +31,9 @@ export function lookupAppleEmoji(emoji: string) {
 }
 
 function emojiImageTag(emoji: string, unified: string) {
-  return `<img class="apple-emoji-img" alt="${emoji}" src="${appleEmojiImageUrl(unified)}" draggable="false" />`;
+  const src = appleEmojiImageUrl(unified);
+  if (!src) return emoji;
+  return `<img class="apple-emoji-img" alt="${emoji}" src="${src}" draggable="false" />`;
 }
 
 export function replaceEmojiWithImages(value: string) {
@@ -57,13 +60,4 @@ export function replaceEmojiWithImages(value: string) {
       });
     })
     .join("");
-}
-
-export function AppleEmojiText({ text }: { text?: string | null }) {
-  const value = text || "";
-  const html = replaceEmojiWithImages(value);
-
-  if (html === value) return <>{value}</>;
-
-  return <span dangerouslySetInnerHTML={{ __html: html }} />;
 }

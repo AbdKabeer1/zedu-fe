@@ -6,7 +6,7 @@ import { Dialog, DialogContent, DialogTitle } from "~/components/ui/dialog";
 import Loading from "~/components/ui/loading";
 import UserAvatar from "~/components/layout/user-avatar";
 import MessageItem from "../ChannelMessage/message-item";
-import { AppleEmojiText } from "~/utils/apple-emoji";
+import { AppleEmojiText } from "~/app/(client)/[org]/_components/apple-emoji/apple-emoji-text";
 import ReplyCard from "../reply-card";
 import { DataContext } from "~/store/GlobalState";
 import { ACTIONS } from "~/store/Actions";

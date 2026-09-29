@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { SmilePlus, Bookmark, BookmarkCheck } from "lucide-react";
 import UserAvatar from "~/components/layout/user-avatar";
 import MessageItem from "./message-item";
-import { AppleEmojiText } from "~/utils/apple-emoji";
+import { AppleEmojiText } from "~/app/(client)/[org]/_components/apple-emoji/apple-emoji-text";
 import {
   Popover,
   PopoverContent,

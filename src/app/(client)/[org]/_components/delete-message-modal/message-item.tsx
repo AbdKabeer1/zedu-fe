@@ -9,7 +9,7 @@ import "prismjs/components/prism-python";
 import "prismjs/components/prism-markup";
 import "prismjs/components/prism-css";
 import PreviewLinks from "../ChannelMessage/preview-links";
-import { replaceEmojiWithImages } from "~/utils/apple-emoji";
+import { replaceEmojiWithImages } from "~/lib/apple-emoji";
 import AssetToDelete from "./asset-to-delete";
 
 /** @eslint-disable */

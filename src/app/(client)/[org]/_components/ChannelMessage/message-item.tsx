@@ -47,7 +47,7 @@ import DocumentAttachmentCard from "./document-attachment-card";
 import DocumentPreviewModal from "./document-preview-modal";
 import { Media } from "~/types/channel";
 import { linkifyText } from "~/utils/linkify-text";
-import { replaceEmojiWithImages } from "~/utils/apple-emoji";
+import { replaceEmojiWithImages } from "~/lib/apple-emoji";
 import {
   getDocumentCategory,
   isPreviewableDocument,

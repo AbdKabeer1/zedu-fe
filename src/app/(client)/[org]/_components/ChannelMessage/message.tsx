@@ -9,7 +9,7 @@ import {
   BookmarkCheck,
 } from "lucide-react";
 import MessageItem from "./message-item";
-import { AppleEmojiText } from "~/utils/apple-emoji";
+import { AppleEmojiText } from "~/app/(client)/[org]/_components/apple-emoji/apple-emoji-text";
 import { DataContext } from "~/store/GlobalState";
 import { ACTIONS } from "~/store/Actions";
 import { useParams, usePathname } from "next/navigation";
