@@ -78,11 +78,13 @@ export const PeopleHomeCard = (props: ComponentProps) => {
     };
 
     const res = await PostRequest(`/organisations/${orgId}/dms`, payload);
+    const participant = props?.participants?.[0];
 
     if (res?.status === 200 || res?.status === 201) {
       router.push(
         `/${orgSlug}/home/people/${res?.data?.data?.channel_id}/${res?.data?.data?.participant_id}/dm`
       );
+      dispatch({ type: ACTIONS.PARTICIPANT, payload: participant });
     }
   };
 
