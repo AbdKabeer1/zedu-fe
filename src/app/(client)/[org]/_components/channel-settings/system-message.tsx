@@ -1,17 +1,85 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Layers, MessageSquare } from "lucide-react";
 import { Switch } from "~/components/ui/switch";
 import { useRBAC } from "~/hooks/useRBAC";
 import Loading from "~/components/ui/loading";
+import { DataContext } from "~/store/GlobalState";
+import { ACTIONS } from "~/store/Actions";
+import { GetRequest, PutRequest } from "~/utils/new-request";
+import { showSuccess } from "~/components/toast/sonner";
 
-const SystemMessage = ({ channelId: _channelId }: { channelId: string }) => {
+const SystemMessage = ({ channelId }: { channelId: string }) => {
+  const { state, dispatch } = useContext(DataContext);
   const { hasPermission, status: rbacStatus } = useRBAC();
   const canManageChannels = hasPermission("manage:channels");
-  const [enabled, setEnabled] = useState(true);
+  const [enabled, setEnabled] = useState<boolean | null>(null);
+  const [saving, setSaving] = useState(false);
 
-  if (rbacStatus === "loading") {
+  const syncChannelDetails = (showJoinedMessage: boolean) => {
+    if (
+      String(state?.channelDetails?.channels_id || "") !== String(channelId)
+    ) {
+      return;
+    }
+    dispatch({
+      type: ACTIONS.CHANNEL_DETAILS,
+      payload: {
+        ...state.channelDetails,
+        show_joined_message: showJoinedMessage,
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (!canManageChannels || !channelId) return;
+    let cancelled = false;
+
+    const load = async () => {
+      setEnabled(null);
+      const res = await GetRequest(`/channels/${channelId}`);
+      if (cancelled) return;
+      if (res?.status === 200 || res?.status === 201) {
+        const data = res?.data?.data;
+        setEnabled(data?.show_joined_message !== false);
+      } else {
+        setEnabled(true);
+      }
+    };
+
+    void load();
+    return () => {
+      cancelled = true;
+    };
+  }, [canManageChannels, channelId]);
+
+  const handleToggle = async (next: boolean) => {
+    if (saving || enabled === null) return;
+    const previous = enabled;
+    setEnabled(next);
+    setSaving(true);
+
+    const res = await PutRequest(
+      `/channels/${channelId}/toggle-user-joined-message`,
+      { show_joined_message: next }
+    );
+
+    if (res?.status === 200 || res?.status === 201) {
+      showSuccess(
+        next
+          ? "User join system messages are on"
+          : "User join system messages are off"
+      );
+      syncChannelDetails(next);
+    } else {
+      setEnabled(previous);
+    }
+
+    setSaving(false);
+  };
+
+  if (rbacStatus === "loading" || (canManageChannels && enabled === null)) {
     return (
       <div className="flex justify-center py-24">
         <Loading color="#5757CD" height="36px" width="36px" />
@@ -52,8 +120,9 @@ const SystemMessage = ({ channelId: _channelId }: { channelId: string }) => {
           </div>
         </div>
         <Switch
-          checked={enabled}
-          onCheckedChange={setEnabled}
+          checked={enabled ?? true}
+          disabled={saving}
+          onCheckedChange={handleToggle}
           aria-label="System message"
           className="data-[state=checked]:bg-[#5757CD] data-[state=unchecked]:bg-[#D0D5DD] dark:data-[state=unchecked]:bg-zinc-600"
         />

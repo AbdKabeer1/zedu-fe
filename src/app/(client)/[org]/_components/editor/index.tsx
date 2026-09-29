@@ -23,9 +23,11 @@ const MessageHardBreak = HardBreak.extend({
 
 const SLASH_COMMAND_ICON = "/image/TelexIcon.svg";
 const CHANNEL_MENTION_ICON = "/images/megaphone.png";
+/** Backend id for @channel (notify everyone in this channel). */
+export const CHANNEL_MENTION_ID = "00000000-0000-0000-0000-000000000000";
 
 const createChannelMentionItem = () => ({
-  id: "channel",
+  id: CHANNEL_MENTION_ID,
   name: "@channel",
   avatar_url: CHANNEL_MENTION_ICON,
   full_name: "Notify everyone in this channel",
@@ -354,7 +356,7 @@ const UseTextEditor = (
 
       const avatarContainer = document.createElement("div");
       const isChannelMention =
-        item.id === "channel" || item.name === "@channel";
+        item.id === CHANNEL_MENTION_ID || item.name === "@channel";
       avatarContainer.className = isChannelMention
         ? "w-6 h-6 flex items-center justify-center rounded-md overflow-hidden flex-shrink-0"
         : "w-6 h-6 flex items-center justify-center rounded-md bg-gray-200 text-white font-bold text-sm overflow-hidden flex-shrink-0";
@@ -385,11 +387,11 @@ const UseTextEditor = (
         status.className = "size-2 rounded-full border border-gray-500";
       }
       mainTextLine.appendChild(nameSpan);
-      if (item.id !== "channel") mainTextLine.appendChild(status);
+      if (item.id !== CHANNEL_MENTION_ID) mainTextLine.appendChild(status);
 
       const secondaryTextSpan = document.createElement("span");
       secondaryTextSpan.textContent =
-        item?.id === "channel"
+        item?.id === CHANNEL_MENTION_ID
           ? item.full_name
           : item.role !== "bot"
             ? item.name
@@ -407,18 +409,17 @@ const UseTextEditor = (
         let labelText = item.name;
         if (!labelText || labelText.trim() === "") labelText = item.email;
         const finalLabel = labelText.replace(/^@/, "");
-        const mentionCommandPayload = { id: item.id, label: finalLabel };
-        if (item.id !== "channel") {
-          const mentionForDispatch = {
-            id: item.id,
-            label: finalLabel,
-            type: "user",
-          };
-          if (
-            !state.mentions.some((m: any) => m.id === mentionForDispatch.id)
-          ) {
-            dispatch({ type: ACTIONS.MENTIONS, payload: [mentionForDispatch] });
-          }
+        const isBroadcastChannelMention =
+          item.id === CHANNEL_MENTION_ID || item.name === "@channel";
+        const mentionId = isBroadcastChannelMention
+          ? CHANNEL_MENTION_ID
+          : item.id;
+        const mentionCommandPayload = { id: mentionId, label: finalLabel };
+        const mentionForDispatch = isBroadcastChannelMention
+          ? { id: CHANNEL_MENTION_ID, type: "user" as const }
+          : { id: item.id, label: finalLabel, type: "user" as const };
+        if (!state.mentions.some((m: any) => m.id === mentionForDispatch.id)) {
+          dispatch({ type: ACTIONS.MENTIONS, payload: [mentionForDispatch] });
         }
         command(mentionCommandPayload);
       };
