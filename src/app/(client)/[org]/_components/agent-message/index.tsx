@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import { DataContext } from "~/store/GlobalState";
 import { groupMessagesByDate } from "~/utils/group-messages";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -44,14 +44,14 @@ const AgentMessage = ({ participant }: any) => {
         style={{
           display: "flex",
           flexDirection: "column-reverse",
-          overflow: "visible",
+          overflowY: "scroll",
         }}
         scrollableTarget="scrollableDivs"
         inverse={true}
       >
         {/* {agentState?.state === "working" && <ChatLoader />} */}
         {Object.entries(groupedMessages)?.map(([dateLabel, threads]: any) => (
-          <div key={dateLabel} className="flex flex-col-reverse">
+          <Fragment key={dateLabel}>
             {threads?.map((item: any, index: number) => {
               const nextMessage = threads[index + 1];
               const shouldShowAvatar =
@@ -64,7 +64,7 @@ const AgentMessage = ({ participant }: any) => {
               );
             })}
 
-            <div className="sticky top-0 z-10 my-2">
+            <div className="relative my-2">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-dotted border-[#E6EAEF]"></div>
               </div>
@@ -74,7 +74,7 @@ const AgentMessage = ({ participant }: any) => {
                 </span>
               </div>
             </div>
-          </div>
+          </Fragment>
         ))}
       </InfiniteScroll>
 

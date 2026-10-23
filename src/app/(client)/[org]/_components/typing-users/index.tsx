@@ -5,16 +5,9 @@ import { DataContext } from "~/store/GlobalState";
 
 const TYPING_EXPIRE_MS = 4000;
 
-type TypingUsersProps = {
-  /** "channel" reads the channel/DM list, "thread" reads the open thread's list. */
-  scope?: "channel" | "thread";
-};
-
-const TypingUsers = ({ scope = "channel" }: TypingUsersProps) => {
+const TypingUsers = () => {
   const { state, dispatch } = useContext(DataContext);
-  const isThread = scope === "thread";
-  const userTyping = isThread ? state.threadTyping : state.userTyping;
-  const typingAction = isThread ? ACTIONS.THREAD_TYPING : ACTIONS.USER_TYPING;
+  const { userTyping } = state;
 
   useEffect(() => {
     if (!userTyping?.length) return;
@@ -24,7 +17,7 @@ const TypingUsers = ({ scope = "channel" }: TypingUsersProps) => {
       userTyping.forEach((typer: any) => {
         if (now - (typer?.at || 0) > TYPING_EXPIRE_MS) {
           dispatch({
-            type: typingAction,
+            type: ACTIONS.USER_TYPING,
             payload: { userId: typer.id, typing: false },
           });
         }
@@ -32,7 +25,7 @@ const TypingUsers = ({ scope = "channel" }: TypingUsersProps) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [userTyping, dispatch, typingAction]);
+  }, [userTyping, dispatch]);
 
   if (!userTyping?.length) return null;
 

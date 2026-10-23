@@ -238,11 +238,13 @@ const Message = ({
           </>
         ) : (
           <span className="block text-xs w-[36px] text-[#98A2B3] mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-            {new Date(item?.created_at).toLocaleTimeString([], {
-              hour: "numeric",
-              minute: "2-digit",
-              hour12: true,
-            })}
+            {new Date(item?.created_at)
+              .toLocaleTimeString([], {
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+              })
+              .replace(/\s?(am|pm)/i, "")}
           </span>
         )}
       </div>
@@ -258,11 +260,13 @@ const Message = ({
             </span>
 
             <span className="text-xs text-[#98A2B3] mt-[1px]">
-              {new Date(item?.created_at).toLocaleTimeString([], {
-                hour: "numeric",
-                minute: "2-digit",
-                hour12: true,
-              })}
+              {new Date(item?.created_at)
+                .toLocaleTimeString([], {
+                  hour: "numeric",
+                  minute: "2-digit",
+                  hour12: true,
+                })
+                .replace(/\s?(am|pm)/i, "")}
             </span>
           </div>
         )}

@@ -20,24 +20,10 @@ import { Channel } from "~/types/channel";
 import { PostRequest } from "~/utils/new-request";
 import Loading from "~/components/ui/loading";
 
-/**
- * Directories → Channels tab: lists the organisation's channels with search,
- * filters and sorting, and lets the user open or join a channel.
- */
 export default function ChannelsTab() {
   const { state, dispatch } = useContext(DataContext);
   const { allChannels, channelloading, orgSlug } = state;
   const router = useRouter();
-
-  // The all-channels list can lag behind the user's own channel list, so
-  // treat a channel as joined if either source says the user is a member.
-  const joinedChannelIds = new Set(
-    (Array.isArray(state?.channels) ? state.channels : []).map(
-      (item: Channel) => item?.channels_id
-    )
-  );
-  const isJoined = (channel: Channel) =>
-    channel.access === true || joinedChannelIds.has(channel.channels_id);
 
   const [showBanner, setShowBanner] = useState(true);
   const [filter, setFilter] = useState("All channels");
@@ -95,8 +81,9 @@ export default function ChannelsTab() {
   const processedData = filteredChannels
     ?.filter((channel: Channel) => {
       let matchesStatus = true;
-      if (filter === "My channels") matchesStatus = isJoined(channel);
-      else if (filter === "Other channels") matchesStatus = !isJoined(channel);
+      if (filter === "My channels") matchesStatus = channel.access === true;
+      else if (filter === "Other channels")
+        matchesStatus = channel.access === false;
       else if (filter === "Archived channels")
         matchesStatus = channel.isArchived === true;
 
@@ -154,10 +141,7 @@ export default function ChannelsTab() {
     const res = await PostRequest(`/channels/${id}/join`, {
       username: user?.username,
     });
-    const alreadyMember = String(res?.response?.data?.message ?? "")
-      .toLowerCase()
-      .includes("already in channel");
-    if (res?.status === 200 || res?.status === 201 || alreadyMember) {
+    if (res?.status === 200 || res?.status === 201) {
       router.push(`/${orgSlug}/home/channels/${id}`);
     } else {
       setButtonloading(false);
@@ -323,7 +307,7 @@ export default function ChannelsTab() {
                     </span>
                   </div>
                   <div className="flex items-center gap-2 mt-1">
-                    {isJoined(channel) && (
+                    {channel.access && (
                       <span className="text-[13px] text-[#007a5a] dark:text-emerald-400 font-bold">
                         ✓ Joined
                       </span>
@@ -350,7 +334,7 @@ export default function ChannelsTab() {
                   >
                     Open in Home
                   </button>
-                  {!isJoined(channel) && !channel.isArchived && (
+                  {!channel.access && !channel.isArchived && (
                     <button
                       onClick={() => handleJoin(channel.channels_id)}
                       className="flex items-center gap-1 px-4 py-1.5 bg-white dark:bg-[#222529] border border-gray-300 dark:border-white/15 rounded font-bold text-[14px] text-[#1d1c1d] dark:text-zinc-100 hover:shadow-sm dark:hover:bg-white/5"

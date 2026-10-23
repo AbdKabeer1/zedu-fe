@@ -46,17 +46,11 @@ export const WebinarResourceCard = ({
           {title}
         </h3>
 
-        {link === "#" ? (
-          <span className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-neutral-100 px-5 text-sm font-medium text-neutral-500">
-            Coming soon
-          </span>
-        ) : (
-          <ArrowBtn
-            text="Watch Webinar"
-            href={link}
-            className="min-h-12 w-full justify-center px-5 text-sm"
-          />
-        )}
+        <ArrowBtn
+          text="Watch Webinar"
+          href={link}
+          className="min-h-12 w-full justify-center px-5 text-sm"
+        />
       </div>
     </div>
   );

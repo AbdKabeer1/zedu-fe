@@ -107,10 +107,10 @@ const CreateOrganization: React.FC = () => {
     <div className="w-full h-screen md:h-[80vh]">
       <div className="w-full max-w-2xl mx-auto my-10 ">
         <h2 className="font-semibold sm:text-3xl text-2xl text-center">
-          Create Your Organisation
+          Create Your Organization
         </h2>
         <p className=" text-[#6E6E6F] text-md mt-4 mb-6 text-center">
-          Input the details of your organisation below
+          Input the details of your organization below
         </p>
 
         <div className="mx-5 mt-5 md:mx-10">
@@ -118,10 +118,10 @@ const CreateOrganization: React.FC = () => {
             <div>
               <div className="form-box mb-3">
                 <label className="mb-2 block text-sm font-semibold">
-                  Organisation Name
+                  Organization Name
                 </label>
                 <Input
-                  placeholder="Enter your organisation Name"
+                  placeholder="Enter your organization Name"
                   className="focus:border-blue-500 py-6"
                   type="text"
                   value={values.organisationName}
@@ -132,10 +132,10 @@ const CreateOrganization: React.FC = () => {
               </div>
               <div className="form-box mb-3">
                 <label className="mb-2 block text-sm font-semibold">
-                  Organisation Type
+                  Organization Type
                 </label>
                 <Input
-                  placeholder="What does your organisation do"
+                  placeholder="What does your organization do"
                   className="focus:border-blue-500 py-6"
                   type="text"
                   value={values.organisationType}

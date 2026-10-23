@@ -54,9 +54,7 @@ const Page = () => {
   return (
     <div className="flex h-[calc(100vh-70px)] relative w-full overflow-hidden">
       <ChatConnection />
-      <div
-        className={`relative flex flex-col flex-1 ${state?.showProfile ? "sm:mr-[408px]" : ""}`}
-      >
+      <div className={`relative flex flex-col flex-1`}>
         <PeopleHeader user={participant} />
 
         <AgentMessage participant={participant} />
@@ -70,7 +68,7 @@ const Page = () => {
       </div>
 
       <div
-        className={`fixed right-0 top-[60px] bottom-0 z-20 w-full sm:w-[408px] bg-white border-l border-[#E6EAEF] shadow-[-3px_0px_25px_0px_#DFDFDF] ${state?.showProfile ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed mt-[60px] right-0 top-0 z-20 w-full sm:w-[408px] h-full bg-white border-l border-[#E6EAEF] shadow-[-3px_0px_25px_0px_#DFDFDF] ${state?.showProfile ? "translate-x-0" : "translate-x-full"}`}
       >
         <ProfileSidebar user={participant} />
       </div>

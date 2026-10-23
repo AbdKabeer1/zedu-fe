@@ -44,7 +44,6 @@ import {
 import { RequirePermission } from "~/components/rbac/RequirePermission";
 import { useRBAC } from "~/hooks/useRBAC";
 import { isOwnerOrAdministrator } from "~/utils/rbac";
-import NavigationHistory from "~/components/layout/topbar/navigation-history";
 
 const Topbar = () => {
   const name: string = localStorage.getItem("channelName") || "";
@@ -298,7 +297,7 @@ const Topbar = () => {
                     onClick={() => setIsSheetOpen(false)}
                   >
                     <AddIcon />
-                    <span>Add organisation</span>
+                    <span>Add organization</span>
                   </Link>
                 </div>
               </SheetContent>
@@ -318,7 +317,7 @@ const Topbar = () => {
                         name={orgData?.name}
                       />
                     </div>
-                    <span className="truncate max-w-44" title={orgData?.name}>
+                    <span className="truncate max-w-20">
                       {orgData?.name ? orgData.name : ""}
                     </span>
                     <span className="h-full flex items-center justify-center mt-0.5">
@@ -480,7 +479,7 @@ const Topbar = () => {
                     className="border border-neutral-600 rounded-[8px] flex gap-2 text-neutral-600 w-full items-center justify-center py-1 hover:bg-neutral-100 transition-colors font-medium"
                   >
                     <AddIcon />
-                    <span>Add a new organisation</span>
+                    <span>Add a new organization</span>
                   </Link>
                 </div>
               </PopoverContent>
@@ -511,16 +510,13 @@ const Topbar = () => {
       </div>
 
       {!pathname.includes(`/${orgSlug}/welcome`) && (
-        <div className="flex min-w-0 items-center sm:flex-1 sm:max-w-2xl">
-          <NavigationHistory />
-          <div className="hidden min-w-0 sm:block sm:flex-1">
-            <SearchInput name={name} orgId={orgData?.id} />
-          </div>
+        <div className="hidden sm:flex">
+          <SearchInput name={name} orgId={orgData?.id} />
         </div>
       )}
 
       {/* Rightmost section: AI Credits */}
-      <div className="flex h-full min-w-0 lg:w-auto items-center lg:py-1 mr-2 lg:mr-0 lg:gap-6">
+      <div className="flex h-full w-3/5 lg:w-auto  items-center lg:py-1 mr-2 lg:mr-0 lg:gap-6">
         <PillWidget />
         <MiniWidget />
       </div>

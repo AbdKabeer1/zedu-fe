@@ -4,8 +4,17 @@ import Link from "next/link";
 import SectionWrapper from "./component/SectionWrapper";
 import { siteUrl } from "~/lib/env-urls";
 
+// Set document title for client component
+const useDocumentTitle = (title: string) => {
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
+};
 function Policy() {
   const [activeSection, setActiveSection] = useState<string>("");
+
+  // Set document title
+  useDocumentTitle("Privacy Policy - Zedu");
 
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
@@ -299,12 +308,12 @@ function Policy() {
               may contact us at{" "}
               <span className="p-1">
                 <Link
-                  href="mailto:support@zedu.chat"
+                  href="mailto:support@zedu.org"
                   target="_blank"
                   rel=""
                   className="text-blue-500"
                 >
-                  support@zedu.chat
+                  support@zedu.org
                 </Link>
               </span>
             </p>

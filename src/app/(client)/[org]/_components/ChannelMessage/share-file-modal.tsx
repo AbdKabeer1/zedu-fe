@@ -182,10 +182,7 @@ const ShareFileModal = ({
         if (!isOpen) resetAndClose();
       }}
     >
-      <DialogContent
-        overlayClassName="z-[80]"
-        className="z-[80] max-w-md p-0 gap-0 overflow-hidden"
-      >
+      <DialogContent className="max-w-md p-0 gap-0 overflow-hidden">
         <DialogHeader className="px-5 py-4 border-b">
           <DialogTitle className="text-base font-semibold">
             Share this file
