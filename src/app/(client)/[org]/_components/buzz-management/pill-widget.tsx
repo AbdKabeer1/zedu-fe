@@ -51,7 +51,7 @@ const PillWidget = () => {
             style={{ backgroundColor: participant.color || "#4848AD" }}
           >
             {Boolean(
-              participant?.avatar_url || participant?.default_avatar_url,
+              participant?.avatar_url || participant?.default_avatar_url
             ) ? (
               <Image
                 src={participant.avatar_url || participant.default_avatar_url}
