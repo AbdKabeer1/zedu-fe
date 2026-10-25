@@ -12,7 +12,7 @@ import images from "~/assets/images";
 import { DataContext } from "~/store/GlobalState";
 import { ACTIONS } from "~/store/Actions";
 import StatusModal from "../status";
-import { PostRequest } from "~/utils/new-request";
+import { DeleteRequests, PostRequest } from "~/utils/new-request";
 import Link from "next/link";
 
 interface ProfileDropdownProps {
@@ -39,6 +39,12 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
 
   // logout user
   const handleLogout = async () => {
+    const authToken = localStorage.getItem("token") || "";
+    const fcmToken = sessionStorage.getItem("fcm_token");
+    if (authToken && fcmToken) {
+      await DeleteRequests("/fcmtoken", { fcm_token: fcmToken }, authToken);
+    }
+    sessionStorage.removeItem("fcm_token");
     localStorage.clear();
     window.location.href = "/auth/login";
   };
