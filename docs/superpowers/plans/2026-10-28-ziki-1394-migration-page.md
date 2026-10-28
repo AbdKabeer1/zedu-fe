@@ -65,7 +65,7 @@
 
 - Create: `handoff/README.md`, `handoff/STATUS.md`, `handoff/DECISIONS.md`, `handoff/RUNBOOK.md`
 
-- [ ] Run format, lint, TypeScript, Cypress, and production build.
-- [ ] Complete desktop/mobile screenshot QA and run the Impeccable detector.
-- [ ] Review the target diff for scope and secrets.
+- [x] Run format, lint, TypeScript, Cypress, and production build.
+- [x] Complete desktop/mobile screenshot QA and run the Impeccable detector.
+- [x] Review the target diff for scope and secrets.
 - [ ] Push, open the PR, and link it to Ziki #1394 with test evidence.

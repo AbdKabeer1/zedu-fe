@@ -14,3 +14,13 @@
 
 - The issue exists against Zedu’s staging repository state.
 - A target-based branch avoids unrelated team-fork commits.
+
+## Focused browser contract
+
+- Missing local public API environment values make the global data provider parse a local HTML fallback as JSON.
+- The migration Cypress spec suppresses only that exact baseline `Unexpected token '<'` exception so route assertions remain meaningful; production code is unchanged.
+
+## Visual review corrections
+
+- Added a computed-style regression assertion after review found white text on a white before-panel override.
+- Removed decorative section kickers and preserved the headings, migration map, and three-step narrative.

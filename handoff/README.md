@@ -6,10 +6,10 @@ Add a public migration landing page for learning teams moving from fragmented co
 
 ## Deliverables
 
-- [ ] `/migrate` page and metadata.
-- [ ] Before/after, benefits, migration steps, FAQ, and CTAs.
-- [ ] Header/footer discovery links.
-- [ ] Responsive and automated verification.
+- [x] `/migrate` page and metadata.
+- [x] Before/after, benefits, migration steps, FAQ, and CTAs.
+- [x] Header/footer discovery links.
+- [x] Responsive and automated verification.
 - [ ] PR and Ziki linkage.
 
 ## Deadline
