@@ -32,6 +32,16 @@ describe("Migrate to Zedu", () => {
     cy.get('section[aria-labelledby="before-after-heading"]')
       .should("contain.text", "Before Zedu")
       .and("contain.text", "With Zedu");
+    cy.contains(
+      'section[aria-labelledby="before-after-heading"] h3',
+      "Before Zedu"
+    ).then(($heading) => {
+      const headingColor = getComputedStyle($heading[0]).color;
+      const panelColor = getComputedStyle(
+        $heading[0].parentElement!
+      ).backgroundColor;
+      expect(headingColor).not.to.equal(panelColor);
+    });
     cy.get('ol[aria-label="Migration steps"] > li').should("have.length", 3);
     cy.get('section[aria-labelledby="migration-faq-heading"] details').should(
       "have.length",

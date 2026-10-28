@@ -57,7 +57,7 @@
 
 - [x] Add “Migrate to Zedu” to the Solutions arrays used by desktop and mobile navigation and footer.
 - [x] Extend Cypress to verify both discovery links.
-- [ ] Commit: `feat: link migration page from marketing navigation`.
+- [x] Commit: `feat: link migration page from marketing navigation`.
 
 ### Task 4: Verification and delivery
 

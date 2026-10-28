@@ -13,7 +13,6 @@ import {
   MessagesSquare,
   Search,
   ShieldCheck,
-  Sparkles,
   UsersRound,
 } from "lucide-react";
 import { ArrowBtn, OutlineBtn } from "../_components/ui/Button";
@@ -173,10 +172,6 @@ export default function MigratePage() {
         />
         <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
           <div className="max-w-2xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-200 bg-primary-50 px-3.5 py-2 text-sm font-semibold text-blue-100">
-              <Sparkles className="h-4 w-4" aria-hidden="true" />A clearer way
-              to move
-            </div>
             <h1 className="text-4xl font-semibold leading-[1.08] tracking-[-0.035em] text-blue-100 sm:text-5xl lg:text-[4rem]">
               Move your learning community out of scattered chats
             </h1>
@@ -211,12 +206,9 @@ export default function MigratePage() {
       >
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 max-w-3xl sm:mb-14">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-500">
-              Before and after
-            </p>
             <h2
               id="before-after-heading"
-              className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-blue-100 sm:text-4xl lg:text-5xl"
+              className="text-3xl font-semibold tracking-[-0.025em] text-blue-100 sm:text-4xl lg:text-5xl"
             >
               Make the important things easier to find
             </h2>
@@ -242,7 +234,6 @@ export default function MigratePage() {
             ]}
             ctaText="Plan your move"
             ctaHref="/contact-sales"
-            withoutPanelClassName="bg-white"
             withPanelClassName="bg-primary-50"
           />
         </div>
@@ -252,10 +243,7 @@ export default function MigratePage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-500">
-                One shared foundation
-              </p>
-              <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-blue-100 sm:text-4xl">
+              <h2 className="text-3xl font-semibold tracking-[-0.025em] text-blue-100 sm:text-4xl">
                 Less tool management. More learning context.
               </h2>
               <p className="mt-5 text-lg leading-8 text-neutral-600">
@@ -295,10 +283,7 @@ export default function MigratePage() {
       <section className="bg-blue-500 px-4 py-20 text-white sm:px-8 sm:py-24 lg:px-12 lg:py-28">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-200">
-              A practical rollout
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] sm:text-4xl lg:text-5xl">
+            <h2 className="text-3xl font-semibold tracking-[-0.025em] sm:text-4xl lg:text-5xl">
               Move with a plan your community can follow
             </h2>
             <p className="mt-5 text-lg leading-8 text-primary-100">
@@ -345,12 +330,9 @@ export default function MigratePage() {
       >
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-500">
-              Migration FAQ
-            </p>
             <h2
               id="migration-faq-heading"
-              className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-blue-100 sm:text-4xl"
+              className="text-3xl font-semibold tracking-[-0.025em] text-blue-100 sm:text-4xl"
             >
               What to know before you move
             </h2>

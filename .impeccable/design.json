@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T20:00:00Z",
+  "title": "Design System: Zedu",
+  "extensions": {
+    "colorMeta": {
+      "primary-violet": {
+        "role": "primary",
+        "displayName": "Zedu Violet",
+        "canonical": "#7141F8",
+        "tonalRamp": [
+          "#303073",
+          "#4A4AAF",
+          "#7141F8",
+          "#8D67FA",
+          "#AA8DFB",
+          "#C6B3FC",
+          "#E3D9FE",
+          "#F3F1FF"
+        ]
+      },
+      "learning-indigo": {
+        "role": "primary",
+        "displayName": "Learning Indigo",
+        "canonical": "#303073",
+        "tonalRamp": [
+          "#20204D",
+          "#303073",
+          "#393988",
+          "#3E3E93",
+          "#4A4AAF",
+          "#5F5FE1",
+          "#BABAFB",
+          "#EEEEFF"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Open Canvas",
+        "canonical": "#FFFFFF",
+        "tonalRamp": [
+          "#262626",
+          "#404040",
+          "#737373",
+          "#A3A3A3",
+          "#D4D4D4",
+          "#E5E5E5",
+          "#F5F5F5",
+          "#FFFFFF"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "One decisive marketing H1."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section arguments and major calls to action."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Readable explanations and supporting content."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons and compact interface labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "focal-product",
+        "value": "0 24px 80px rgba(100, 76, 170, 0.13)",
+        "purpose": "Lift one principal product demonstration from its field."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control-color",
+        "value": "100ms ease-in",
+        "purpose": "Fast outline-button color response."
+      },
+      {
+        "name": "arrow-nudge",
+        "value": "300ms ease-out",
+        "purpose": "Small directional confirmation on primary CTA hover."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary conversion action used for demos and account creation.",
+      "html": "<button class=\"ds-btn-primary\">Book a Demo <span aria-hidden=\"true\">→</span></button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:12px; background:#7141F8; color:#fff; border:0; border-radius:9999px; padding:12px 24px; font:600 14px/1.25 Lato,sans-serif; transition:background-color 200ms ease; } .ds-btn-primary:hover { background:#8D67FA; } .ds-btn-primary:focus-visible { outline:3px solid #C6B3FC; outline-offset:3px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary conversion action paired with a primary button.",
+      "html": "<button class=\"ds-btn-outline\">Start for Free</button>",
+      "css": ".ds-btn-outline { background:#fff; color:#303073; border:1px solid #7141F8; border-radius:9999px; padding:12px 24px; font:600 14px/1.25 Lato,sans-serif; transition:background-color 100ms ease-in,color 100ms ease-in; } .ds-btn-outline:hover { background:#7141F8; color:#fff; } .ds-btn-outline:focus-visible { outline:3px solid #C6B3FC; outline-offset:3px; }"
+    },
+    {
+      "name": "Feature Panel",
+      "kind": "card",
+      "refersTo": "feature-panel",
+      "description": "A pale-violet structural field for product demonstrations.",
+      "html": "<section class=\"ds-feature-panel\"><strong>Cohort spaces</strong><p># cohort-announcements</p></section>",
+      "css": ".ds-feature-panel { background:#F3F1FF; color:#303073; border:1px solid #E3D9FE; border-radius:24px; padding:24px; font-family:Lato,sans-serif; box-shadow:0 24px 80px rgba(100,76,170,.13); } .ds-feature-panel strong { font-size:14px; } .ds-feature-panel p { margin:16px 0 0; background:#fff; border-radius:12px; padding:12px; }"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "description": "White marketing navigation with compact links and conversion actions.",
+      "html": "<nav class=\"ds-nav\"><strong>Zedu</strong><a href=\"#\">Products</a><a href=\"#\">Solutions</a><button>Get Started</button></nav>",
+      "css": ".ds-nav { display:flex; align-items:center; gap:24px; min-height:80px; padding:0 24px; background:#fff; color:#303073; border-bottom:1px solid #E5E5E5; font:500 14px/1.25 Lato,sans-serif; } .ds-nav a { color:#525252; text-decoration:none; } .ds-nav a:hover { color:#5F5FE1; } .ds-nav button { margin-left:auto; background:#7141F8; color:#fff; border:0; border-radius:9999px; padding:12px 24px; } .ds-nav button:focus-visible,.ds-nav a:focus-visible { outline:3px solid #C6B3FC; outline-offset:3px; }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "description": "Quiet rounded field used for footer subscription and compact forms.",
+      "html": "<input class=\"ds-input\" type=\"email\" placeholder=\"john@example.com\" />",
+      "css": ".ds-input { width:100%; background:#fff; color:#303073; border:1px solid #E5E5E5; border-radius:8px; padding:10px 12px; font:400 14px/1.4 Lato,sans-serif; } .ds-input:focus-visible { border-color:#7141F8; outline:3px solid #E3D9FE; outline-offset:1px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Organized Learning Workspace",
+    "overview": "Zedu's public experience makes complicated education coordination feel ordered and approachable. White space carries most pages; violet identifies decisions, movement, and the product itself; deep indigo gives headlines authority without becoming corporate.",
+    "keyCharacteristics": [
+      "Light, spacious, and education-first.",
+      "Violet action color with deep-indigo editorial hierarchy.",
+      "Rounded controls and structural panels, not a page made entirely of cards.",
+      "Product-specific diagrams instead of invented metrics."
+    ],
+    "rules": [
+      {
+        "name": "Violet Means Action",
+        "body": "Reserve saturated violet for controls, active states, directional cues, and decisive branded regions.",
+        "section": "colors"
+      },
+      {
+        "name": "Heading Carries the Section",
+        "body": "Do not add decorative eyebrows above headings.",
+        "section": "typography"
+      },
+      {
+        "name": "One Focal Lift",
+        "body": "A section may elevate its principal product demonstration while supporting content stays flat.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do demonstrate how learning communication becomes structured.",
+      "Do use generous section spacing and clear heading scale.",
+      "Do keep mobile reading order complete and obvious.",
+      "Do use existing shared buttons and the Lucide stroke-icon family."
+    ],
+    "donts": [
+      "Don't invent migration automation, customer proof, or performance metrics.",
+      "Don't build whole pages from identical icon cards.",
+      "Don't introduce decorative gradients, glass, or heavy shadows where content should carry the idea.",
+      "Don't use competitor logos or imply an official partnership."
+    ]
+  }
+}
