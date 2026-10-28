@@ -68,4 +68,4 @@
 - [x] Run format, lint, TypeScript, Cypress, and production build.
 - [x] Complete desktop/mobile screenshot QA and run the Impeccable detector.
 - [x] Review the target diff for scope and secrets.
-- [ ] Push, open the PR, and link it to Ziki #1394 with test evidence.
+- [x] Push, open the PR, and link it to Ziki #1394 with test evidence.

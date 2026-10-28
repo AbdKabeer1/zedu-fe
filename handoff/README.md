@@ -10,7 +10,8 @@ Add a public migration landing page for learning teams moving from fragmented co
 - [x] Before/after, benefits, migration steps, FAQ, and CTAs.
 - [x] Header/footer discovery links.
 - [x] Responsive and automated verification.
-- [ ] PR and Ziki linkage.
+- [x] PR opened: https://github.com/zeduchat/zedu-fe/pull/1086.
+- [x] Ziki `pullRequestUrl` and test evidence submitted; review status is `submitted`.
 
 ## Deadline
 

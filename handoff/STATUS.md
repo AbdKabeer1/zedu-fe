@@ -15,10 +15,13 @@ Last updated: 2026-10-28
 - Lint exits successfully with 0 errors and 134 pre-existing repository warnings.
 - Production desktop/mobile captures passed visual review; Impeccable detector returned no findings.
 - Added `PRODUCT.md`, `DESIGN.md`, and `.impeccable/design.json` for durable product and design context.
+- Opened https://github.com/zeduchat/zedu-fe/pull/1086 against `central-staging`.
+- Linked PR #1086 and test evidence to Ziki #1394; review status is `submitted`.
+- Posted delivery evidence comment `cmvsg7a8k0q6dt101sidxrf68`.
 
 ## In progress
 
-- PR creation and Ziki evidence linkage.
+- PR review.
 
 ## Blocked
 
@@ -26,5 +29,5 @@ Last updated: 2026-10-28
 
 ## Next
 
-1. Open the clean PR against `central-staging`.
-2. Link the PR and verification evidence to Ziki #1394.
+1. Review PR #1086.
+2. Merge after approval and green repository checks.
