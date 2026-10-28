@@ -25,9 +25,10 @@ Last updated: 2026-10-28
 
 ## Blocked
 
-- None.
+- PR #1086's Vercel status context is failing at a `vercel.com/git/authorize` URL for the Zeduchat team. This is repository integration authorization, not a failed application build; the local Next.js production build passes and statically prerenders `/migrate`.
 
 ## Next
 
 1. Review PR #1086.
-2. Merge after approval and green repository checks.
+2. A Zeduchat/Vercel owner should restore the Git integration authorization or acknowledge the infrastructure-only check.
+3. Merge after approval and required repository checks.
