@@ -56,6 +56,11 @@ const solutionLinks: FooterLink[] = [
     label: "Universities",
     href: "/solutions/universities",
   },
+  {
+    id: 3,
+    label: "Migrate to Zedu",
+    href: "/migrate",
+  },
 ];
 
 const supportLinks: FooterLink[] = [

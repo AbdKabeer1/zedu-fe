@@ -46,7 +46,7 @@
 - [x] Implement the hero, migration map, before/after, benefits, three-step path, FAQ, and closing CTA.
 - [x] Reuse shared buttons and Lucide icons.
 - [x] Run Cypress and verify GREEN.
-- [ ] Commit: `feat: add migration marketing page`.
+- [x] Commit: `feat: add migration marketing page`.
 
 ### Task 3: Marketing discovery links
 
@@ -55,8 +55,8 @@
 - Modify: `src/app/(homepage)/_components/header/index.tsx`
 - Modify: `src/app/(homepage)/_components/footer/index.tsx`
 
-- [ ] Add “Migrate to Zedu” to the Solutions arrays used by desktop and mobile navigation and footer.
-- [ ] Extend Cypress to verify both discovery links.
+- [x] Add “Migrate to Zedu” to the Solutions arrays used by desktop and mobile navigation and footer.
+- [x] Extend Cypress to verify both discovery links.
 - [ ] Commit: `feat: link migration page from marketing navigation`.
 
 ### Task 4: Verification and delivery

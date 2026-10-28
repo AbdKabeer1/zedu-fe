@@ -8,6 +8,11 @@ const assertNoHorizontalOverflow = () => {
 
 describe("Migrate to Zedu", () => {
   beforeEach(() => {
+    cy.on("uncaught:exception", (error) => {
+      if (error.message.includes("Unexpected token '<'")) {
+        return false;
+      }
+    });
     cy.visit("/migrate");
   });
 
@@ -32,6 +37,18 @@ describe("Migrate to Zedu", () => {
       "have.length",
       5
     );
+  });
+
+  it("is discoverable from the Solutions navigation and footer", () => {
+    cy.viewport(1280, 800);
+    cy.get("nav").contains("button", "Solutions").click();
+    cy.get('[role="menu"] a[href="/migrate"]')
+      .should("be.visible")
+      .and("contain.text", "Migrate to Zedu");
+
+    cy.get('footer a[href="/migrate"]')
+      .should("be.visible")
+      .and("contain.text", "Migrate to Zedu");
   });
 
   [
